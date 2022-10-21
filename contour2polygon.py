@@ -1,6 +1,7 @@
 from shapely.geometry import MultiPolygon, Polygon
 from collections import defaultdict
 
+
 def mask_to_polygons(mask, epsilon=10., min_area=10.):
     # first, find contours with cv2: it's much faster than shapely
     contours, hierarchy = cv2.findContours( # image, 
@@ -39,6 +40,7 @@ def mask_to_polygons(mask, epsilon=10., min_area=10.):
         if all_polygons.type == 'Polygon':
             all_polygons = MultiPolygon([all_polygons])
     return all_polygons
+
 
 def mask_for_polygons(polygons, im_size=(512,512)):
     img_mask = np.zeros(im_size, np.uint8)
